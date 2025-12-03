@@ -184,6 +184,15 @@ document.addEventListener("click", function() {
   forceFullscreen();
 }, { once: true });
 </script>
+<script>
+const API = "https://script.google.com/macros/s/AKfycbwtQdG1uad94FIYz9molQyBLSYOChvWn89fjWvSbf-CON9YrFHyBEUvG0oZ0dVnwSc5/exec";
+
+fetch(API + "?action=fileCount")
+  .then(r => r.text())
+  .then(count => {
+    localStorage.setItem("emergency_last_seen", count.trim());
+  });
+</script>
 
 </body>
 </html>
