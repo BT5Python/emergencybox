@@ -113,6 +113,7 @@ function renderList(){
     li.className = "file-item";
     li.innerHTML = `<div>${f.name} <div class="small">${(f.size/1024).toFixed(1)} KB</div></div>
                     <button class="btn" onclick="removeFile(${i})">Hapus</button>`;
+    
     fileList.appendChild(li);
   });
   count.textContent = files.length + " file";
@@ -193,6 +194,16 @@ fetch(API + "?action=fileCount")
     localStorage.setItem("emergency_last_seen", count.trim());
   });
 </script>
+// ===== EMERGENCYBOX.HTML: hentikan alarm saat file diklik =====
+document.querySelectorAll(".new-file").forEach(fileBtn => {
+    fileBtn.addEventListener("click", () => {
+        // update localStorage supaya alarm di database.html mati
+        localStorage.setItem("emergency_last_seen", Date.now());
+
+        // opsional: feedback user
+        alert("✔ Alarm untuk file ini telah dihentikan!");
+    });
+});
 
 </body>
 </html>
