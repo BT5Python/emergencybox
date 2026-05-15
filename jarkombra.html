@@ -170,9 +170,13 @@ uploadBtn.addEventListener("click", async ()=>{
     const file=files[i];
     const base64=await toBase64(file);
     const form=new URLSearchParams();
-    form.append("name",file.name);
-    form.append("type",file.type);
-    form.append("file",base64.split(',')[1]);
+    form.append("name", file.name);
+    form.append("type", file.type);
+    form.append("file", base64.split(',')[1]);
+    // SUBFOLDER TUJUAN
+    form.append("folder", "BERITA HARI INI");
+    form.append("folder", "TAHUN 2025"); form.append("folder", "TAHUN 2026"); form.append("folder", "TAHUN 2027"); form.append("folder", "TAHUN 2028");
+    form.append("folder", "TAHUN 2029"); form.append("folder", "TAHUN 2030");
     try{
       const res=await fetch(WEBAPP_URL,{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:form});
       const result=await res.json();
